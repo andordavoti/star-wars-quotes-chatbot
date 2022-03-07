@@ -1,34 +1,59 @@
 # import socket library
 from socket import *
 
-# import shared constants
-from constants import *
+# import sys library
+import sys
 
-# create a server socket using TCP/IP protocol
-s = socket(AF_INET, SOCK_STREAM)
+try:
+    # create a server socket using TCP/IP protocol
+    s = socket(AF_INET, SOCK_STREAM)
 
-# bind the socketwith host and port number
-s.bind((host, port))
+    # get ip and port number from cli args
+    ip = sys.argv[1]
+    port = int(sys.argv[2])
 
-# allow maximum 1 connection to the socket
-s.listen(1)
+    # bind the socketwith host and port number
+    s.bind((ip, port))
 
-# endless loop to receive messages from client
-while True:
+    # allow maximum 1 connection to the socket
+    s.listen(1)
+
+    print('server is running...')
+
     # wait till a client accepts the connection
     c, addr = s.accept()
 
     # display client address
-    print("Connection from: ", str(addr))
+    print("connection from: ", str(addr))
 
-    # read message from client, decode it
-    message = c.recv(bufsize).decode()
+    try:
+        # loop to receive messages from client
+        while True:
+            # read message from client, decode it in UTF-8
+            message = c.recv(2048).decode('utf-8')
 
-    # display message from client
-    print("Message from client: ", message)
+            if(message == 'exit'):
+                print('\nclient has left the chat room')
 
-    # send modified message to client, encode it with UTF-8
-    c.send(bytes('Your message was: ' + message, 'utf-8'))
+                # send goodbye message to client, encode it with UTF-8
+                c.send(bytes('\ngoodbye!', 'utf-8'))
 
-    # close client socket
-    c.close()
+                # close client socket
+                c.close()
+                break
+
+            # display message from client
+            print("Message from client: ", message)
+
+            # send modified message to client, encode it with UTF-8
+            c.send(bytes('Your message was: ' + message, 'utf-8'))
+
+    except BrokenPipeError:
+        print("\nclient has left the chat room!")
+    except ConnectionResetError:
+        print("\nclient has left the chat room!")
+
+except IndexError:
+    print("usage: python3 client.py <ip> <port>")
+except KeyboardInterrupt:
+    print("\ngoodbye!")
