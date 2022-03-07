@@ -12,6 +12,11 @@ try:
     ip = sys.argv[1]
     port = int(sys.argv[2])
 
+    # cli help option
+    if(ip == '--help' or ip == '- h'):
+        print('usage: python3 server.py <ip> <port>')
+        sys.exit()
+
     # bind the socketwith host and port number
     s.bind((ip, port))
 
@@ -53,7 +58,7 @@ try:
     except ConnectionResetError:
         print("\nclient has left the chat room!")
 
-except IndexError:
+except (IndexError, ValueError):
     print("usage: python3 client.py <ip> <port>")
 except KeyboardInterrupt:
     print("\ngoodbye!")

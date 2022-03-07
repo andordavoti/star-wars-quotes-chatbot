@@ -12,6 +12,11 @@ try:
     ip = sys.argv[1]
     port = int(sys.argv[2])
 
+    # cli help option
+    if(ip == '--help' or ip == '- h'):
+        print('usage: python3 client.py <ip> <port>')
+        sys.exit()
+
     # connect to server with host and port number
     c.connect((ip, port))
     print("\nwelcome to the chat room!")
@@ -42,5 +47,5 @@ try:
     # close client socket
     c.close()
 
-except IndexError:
+except (IndexError, ValueError):
     print("usage: python3 client.py <ip> <port>")
