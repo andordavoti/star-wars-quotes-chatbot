@@ -15,6 +15,7 @@ try:
     # cli help option
     if(ip == '--help' or ip == '- h'):
         print('usage: python3 client.py <ip> <port>')
+        print('example: python3 client.py localhost 9999')
         sys.exit()
 
     # connect to server with host and port number
@@ -49,3 +50,4 @@ try:
 
 except (IndexError, ValueError):
     print("usage: python3 client.py <ip> <port>")
+    print('example: python3 client.py localhost 9999')

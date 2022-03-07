@@ -15,6 +15,7 @@ try:
     # cli help option
     if(ip == '--help' or ip == '- h'):
         print('usage: python3 server.py <ip> <port>')
+        print('example: python3 server.py localhost 9999')
         sys.exit()
 
     # bind the socketwith host and port number
@@ -59,6 +60,7 @@ try:
         print("\nclient has left the chat room!")
 
 except (IndexError, ValueError):
-    print("usage: python3 client.py <ip> <port>")
+    print("usage: python3 server.py <ip> <port>")
+    print('example: python3 server.py localhost 9999')
 except KeyboardInterrupt:
     print("\ngoodbye!")
