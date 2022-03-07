@@ -4,11 +4,11 @@
 
 start client:
 ```sh
-python3 client.py localhost 9999
+python3 client.py <ip> <port>
 ```
 
 ## server
 start server:
 ```sh
-python3 server.py localhost 9999
+python3 server.py <ip> <port>
 ```
