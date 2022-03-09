@@ -4,6 +4,14 @@
 
 Start first the server with localhost as the IP and a port that's not in use on your system. Then start the client with the same CLI args as the server.
 
+Available bots:
+- obi
+- solo
+- anakin
+- poe
+- padme
+- leia
+
 ## Client
 
 Run client:
