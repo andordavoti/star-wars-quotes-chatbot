@@ -1,4 +1,5 @@
 from socket import *
+from bots import *
 import sys
 
 try:
@@ -19,7 +20,12 @@ try:
     c.connect((ip, port))
     print("\nwelcome to the chat room!")
 
+    # get user name
     name = input("\nwhat's your name? ")
+
+    # display the bots the user can chat with
+    bots = ', '.join(list(bots.keys()))
+    print('\nyou can chat with: ' + bots)
 
     try:
         while True:

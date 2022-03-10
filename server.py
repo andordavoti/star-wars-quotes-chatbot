@@ -1,7 +1,7 @@
 from socket import *
+from bots import *
 import random
 import sys
-from bots import *
 
 
 def analyzeMessage(message: str, c: socket):
