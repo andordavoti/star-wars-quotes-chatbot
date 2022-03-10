@@ -5,7 +5,7 @@ from bots import *
 
 
 def analyzeMessage(message: str, c: socket):
-    words = message.lower().replace('?', '').split()
+    words = message.lower().replace('?', '').replace('.', '').split()
 
     responded = False
 
