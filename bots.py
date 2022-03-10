@@ -1,3 +1,9 @@
+############### 
+verbs = 
+badVerbs=
+helloWords=
+############
+
 bots = {
     'anakin': [
         'I am your father',
