@@ -1,7 +1,4 @@
-# import socket library
 from socket import *
-
-# import sys library
 import sys
 
 try:
@@ -13,7 +10,7 @@ try:
     port = int(sys.argv[2])
 
     # cli help option
-    if(ip == '--help' or ip == '- h'):
+    if(ip == '--help' or ip == '-h'):
         print('usage: python3 client.py <ip> <port>')
         print('example: python3 client.py localhost 9999')
         sys.exit()
@@ -22,10 +19,12 @@ try:
     c.connect((ip, port))
     print("\nwelcome to the chat room!")
 
+    name = input("\nwhat's your name? ")
+
     try:
         while True:
             # read message from user
-            message = input("\nme: ")
+            message = input("\n" + name + ": ")
 
             # send message to server with UTF-8 encoding
             c.send(bytes(message, 'utf-8'))
@@ -47,6 +46,9 @@ try:
 
     # close client socket
     c.close()
+
+except ConnectionRefusedError:
+    print("connection refused: is the server running?")
 
 except (IndexError, ValueError):
     print("usage: python3 client.py <ip> <port>")
